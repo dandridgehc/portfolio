@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FORTUNE TELLER</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <style>
@@ -32,19 +33,44 @@
 
 
 <body>
+
+    <h1>FORTUNE TELLER GAME</h1>
     <!-- input bar for guesses -->
-    <input id="user-guess" type="text"></input>
-    <button id="guess-button" onclick="guess()">GUESS</button>
-    <button id="restart-button" onclick="restart()">PLAY AGAIN</button>
+    <div class="row">
+        <input id="user-guess" type="text"></input>
+    </div>
+
+    <div class="row">
+         <button class="btn btn-success btn-lg" id="guess-button" onclick="guess()">GUESS</button>
+    </div>
+    
+   
+    <div class="row"> 
+        <button id="restart-button" onclick="restart()">PLAY AGAIN</button>
+    </div>
+    
+
+    <div class="row">
 
 
-    <div class="game-status">
+        <div class="game-status">
 
-        <span id="guesses">Guesses: </span>
-        <span id="guesses-left">Guesses Left: 5</span>
+                <div class="row">
+                    <span class="game-display" id="guesses">Guesses: </span>
+                </div>
+            
+                <div class="row">
+                    <span class="game-display" id="guesses-left">Guesses Left: 5</span>
+                </div>
+            
+
+        </div>
+
 
     </div>
 
+
+    
 
 
 
@@ -90,7 +116,7 @@
                     numGuesses = 0
                 } else {
                     alert("WRONG YOU SHORT-SIGHTED DIMWIT");
-                    document.getElementById("guesses").innerText += userGuess + " ";
+                    document.getElementById("guesses").innerText += userGuess + "   ";
                 }
 
             } else {
