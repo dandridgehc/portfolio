@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FORTUNE TELLER</title>
+</head>
+
+<style>
+    body {
+        background-color: blueviolet;
+    }
+
+   
+
+    @keyframes lose {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(5);
+        }
+    }
+
+    button #restart-button {
+        z-index: 2;
+    }
+</style>
+
+
+
+<body>
+    <!-- input bar for guesses -->
+    <input id="user-guess" type="text"></input>
+    <button id="guess-button" onclick="guess()">GUESS</button>
+    <button id="restart-button" onclick="restart()">PLAY AGAIN</button>
+
+
+    <div class="game-status">
+
+        <span id="guesses">Guesses: </span>
+        <span id="guesses-left">Guesses Left: 5</span>
+
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var userGuess
+        // Make array of letters
+
+        var lettersString = "abcdefghijklmnopqrstuvwxyz";
+        var lettersArray = lettersString.split('');
+
+        // Pick a random letter
+        //   random letter generator (to go inside funtion or its set to a fixed number)
+        var randomLetter = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+
+        // function testing letter
+        // randomLetter = "u"
+
+
+        // Ask user for input
+
+
+        //   userGuess = prompt("Guess a letter! Idiot!")
+
+        //         // Check guesses / games status
+
+
+        var numGuesses = 0
+        var maxGuesses = 5
+        function guess(event) {
+            userGuess = document.getElementById("user-guess").value
+            numGuesses++
+
+            document.getElementById("guesses-left").innerText = "Guesses Left: " + (maxGuesses - numGuesses)
+
+            if (numGuesses < maxGuesses) {
+
+                if (userGuess === randomLetter) {
+                    alert("YOU WIN!");
+                    numGuesses = 0
+                } else {
+                    alert("WRONG YOU SHORT-SIGHTED DIMWIT");
+                    document.getElementById("guesses").innerText += userGuess + " ";
+                }
+
+            } else {
+                alert("YOU LOSE FOR GOOD! YOU LOSING LOSER!");
+                document.getElementById("guess-button").disabled = true;
+                document.getElementById("guess-button").innerText = "LOSER!!!";
+                document.getElementById("guess-button").style = "background-color:red;animation-iteration-count:infinite;animation-duration:3s;animation-name:lose;"
+            }
+
+
+
+        }
+
+        function restart(event) {
+            document.getElementById("guess-button").disabled = false;
+            document.getElementById("guesses").innerText = "Guesses: ";
+            document.getElementById("guesses-left").innerText = "Guesses Left: 5";
+            document.getElementById("guess-button").innerText = "GUESS";
+            numGuesses = 0;
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
